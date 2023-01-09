@@ -3,12 +3,15 @@
     grid-template-columns: 1fr auto;
     padding: 8px 32px;
   }
+
   .app-bar .app-bar__brand h1 {
     font-size: 1.5em;
   }
+
   .app-bar .app-bar__menu {
     display: none;
   }
+
   .app-bar .app-bar__navigation {
     position: static;
     width: 100%;
@@ -43,6 +46,7 @@
     grid-column-end: 3;
   }
 }
+
 @media screen and (min-width: 800px) {
   .app-bar .app-bar__brand h1 {
     font-size: 2em;
