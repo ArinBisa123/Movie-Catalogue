@@ -48,5 +48,8 @@ const createLikedButtonTemplate = () => `
   </button>
 `;
 export {
-  createMovieDetailTemplate, createMovieItemTemplate, createLikeButtonTemplate, createLikedButtonTemplate,
+  createMovieDetailTemplate,
+  createMovieItemTemplate,
+  createLikeButtonTemplate,
+  createLikedButtonTemplate,
 };
