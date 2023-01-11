@@ -33,7 +33,6 @@
   },
   "dependencies": {
     "idb": "^7.1.1",
-    "node-polyfill-webpack-plugin": "^2.0.1",
     "regenerator-runtime": "^0.13.11",
     "workbox-window": "^6.5.4"
   }
