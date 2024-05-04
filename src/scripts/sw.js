@@ -1,6 +1,8 @@
 /* eslint-disable no-undef */
 import { async } from 'regenerator-runtime';
 import { precacheAndRoute } from 'workbox-precaching';
+import { registerRoute } from 'workbox-routing';
+import { StaleWhileRevalidate } from 'workbox-strategies';
 import CacheHelper from './utils/cache-helper';
 
 // Daftar asset yang akan di-caching
@@ -25,21 +27,22 @@ const assetsToCache = [
 // eslint-disable-next-line no-undef
 precacheAndRoute(self.__WB_MANIFEST);
 
+// cache
 self.addEventListener('install', (event) => {
   event.waitUntil(CacheHelper.cachingAppShell([...assetsToCache]));
   console.log('Service Worker: Installed');
   self.skipWaiting();
 });
 
-self.addEventListener('activate',(event)=>{
+self.addEventListener('activate', (event) => {
   event.waitUntil(CacheHelper.deleteOldCache());
-   console.log('Activating service worker...')
-})
-self.addEventListener('fetch',(event)=>{
+  console.log('Activating service worker...');
+});
+self.addEventListener('fetch', (event) => {
   event.respondWith(CacheHelper.revalidateCache(event.request));
   // console.log(event.request)
   // event.responWith(fetch(event.request))
-})
+});
 self.addEventListener('push', (event) => {
   console.log('Service Worker: Pushed');
   const dataJson = event.data.json();
@@ -62,3 +65,11 @@ self.addEventListener('notificationclick', (event) => {
   };
   event.waitUntil(chainPromise());
 });
+
+// runtime caching
+registerRoute(
+  ({ url }) => url.href.startsWith('https://api.themoviedb.org/3/'),
+  new StaleWhileRevalidate({
+    cacheName: 'themovie-db-api',
+  }),
+);
