@@ -11,7 +11,7 @@ const Upcoming = {
     `;
   },
   async afterRender() {
-    const movies = await TheMovieDbSource.nowPlayingMovies();
+    const movies = await TheMovieDbSource.upcomingMovies();
     const moviesContainer = document.querySelector('#movies');
     movies.forEach((movie) => {
       moviesContainer.innerHTML += createMovieItemTemplate(movie);

@@ -2,6 +2,8 @@ import DrawerInitiator from '../utils/drawer-initiator';
 import UrlParser from '../routes/url-parser';
 import routes from '../routes/routes';
 
+//initiate app shell component
+
 class App {
   constructor({ button, drawer, content }) {
     this._button = button;
