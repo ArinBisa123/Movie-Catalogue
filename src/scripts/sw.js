@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { async } from 'regenerator-runtime';
 import { precacheAndRoute } from 'workbox-precaching';
 import CacheHelper from './utils/cache-helper';
@@ -21,6 +22,7 @@ const assetsToCache = [
 ];
 
 // Do precaching
+// eslint-disable-next-line no-undef
 precacheAndRoute(self.__WB_MANIFEST);
 
 self.addEventListener('install', (event) => {
