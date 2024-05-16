@@ -1,15 +1,15 @@
 import FavoriteMovieIdb from '../src/scripts/data/favorite-movie-idb';
-import * as TestFactories from './helpers/testFactories'
+import * as TestFactories from './helpers/testFactories';
 
 describe('Liking a movie', () => {
-  const addLikeButtonContainer = ()=>{
+  const addLikeButtonContainer = () => {
     document.body.innerHTML = '<div id="likeButtonContainer"></div>';
-  }
-  beforeEach(()=>{
-    addLikeButtonContainer()
-  })
+  };
+  beforeEach(() => {
+    addLikeButtonContainer();
+  });
   it('should show the like button when the movie has not been liked before', async () => {
-    await TestFactories.createLikeButtonPresenterWithMovie({id:1})
+    await TestFactories.createLikeButtonPresenterWithMovie({ id: 1 });
     expect(document.querySelector('[aria-label="like this movie"]')).toBeTruthy();
   });
   it('should not show the unlike button when the movie has not been liked before', async () => {
@@ -22,7 +22,7 @@ describe('Liking a movie', () => {
     // Memastikan film berhasil disukai
     const movie = await FavoriteMovieIdb.getMovie(1);
     expect(movie).toEqual({ id: 1 });
-    await FavoriteMovieIdb.deleteMovie(1)
+    await FavoriteMovieIdb.deleteMovie(1);
   });
   it('should not add a movie again when its already liked', async () => {
     await TestFactories.createLikeButtonPresenterWithMovie({ id: 1 });
