@@ -4,7 +4,7 @@
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   background-color: white;
   min-height: 100vh;
   display: flex;
@@ -12,8 +12,8 @@ body {
 }
 
 /*
-    AppBar
-  */
+  AppBar
+*/
 
 .app-bar {
   padding: 8px 16px;
@@ -77,8 +77,8 @@ body {
 }
 
 /*
-    Main Content
-  */
+  Main Content
+*/
 
 main {
   padding: 32px;
@@ -94,9 +94,10 @@ main {
   font-weight: normal;
 }
 
+
 /*
-    Movies
-  */
+  Movies
+*/
 
 .movies {
   display: grid;
@@ -106,8 +107,8 @@ main {
 }
 
 /*
-    Movie Item
-  */
+  Movie Item
+*/
 
 .movie-item {
   width: 100%;
@@ -160,8 +161,8 @@ main {
 }
 
 /*
-    Movie
-  */
+  Movie
+*/
 
 .movie {
   margin: 0 auto;
@@ -180,10 +181,39 @@ main {
 .movie .movie__info h4 {
   margin: 8px 0;
 }
-/* 
-    Like
+
+/*
+  Footer
 */
-.like{
+
+footer {
+  padding: 16px;
+}
+
+footer #footerTools {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+}
+
+footer p {
+  margin-top: 16px;
+
+  text-align: center;
+  color: #aaaaaa;
+}
+
+footer p a {
+  color: #db0000;
+  text-decoration: none;
+}
+
+/*
+  Like
+*/
+
+.like {
   font-size: 18px;
   position: fixed;
   bottom: 16px;
@@ -200,33 +230,10 @@ main {
   justify-content: center;
 }
 
-
 /*
-    Footer
-  */
-
-footer {
-  padding: 16px;
-}
-footer #footerTools {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 8px;
-}
-footer p {
-  margin-top: 16px;
-  text-align: center;
-  color: #aaaaaa;
-}
-
-footer p a {
-  color: #db0000;
-  text-decoration: none;
-}
-/* 
-Button
+  Button
 */
+
 .btn {
   display: inline-block;
   padding: 12px 24px;
@@ -241,13 +248,15 @@ Button
   cursor: pointer;
   transition: .15s ease-in-out;
 }
- 
+
 .btn:hover {
   background-color: #DB0000BB;
 }
+
 .btn:active {
   background-color: #DB0000DD;
 }
+
 .btn:focus-visible {
   outline: 3px solid #DB000055;
 }

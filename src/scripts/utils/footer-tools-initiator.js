@@ -24,10 +24,11 @@ const FooterToolsInitiator = {
       this._unsubscribePushMessage(event);
     });
   },
-  // eslint-disable-next-line no-empty-function
+
   async _initialState() {
     this._showSubscribeButton();
   },
+
   async _subscribePushMessage(event) {
     event.stopPropagation();
 
@@ -60,28 +61,35 @@ const FooterToolsInitiator = {
       // Undo subscribing push notification
       await pushSubscription?.unsubscribe();
     }
+
     this._showSubscribeButton();
   },
 
   async _unsubscribePushMessage(event) {
     event.stopPropagation();
+
     const pushSubscription = await this._registrationServiceWorker?.pushManager.getSubscription();
     if (!pushSubscription) {
-      window.alert('Haven\t subscribing to push message');
+      window.alert('Haven\'t subscribing to push message');
       return;
     }
+
     try {
       await this._sendPostToServer(CONFIG.PUSH_MSG_UNSUBSCRIBE_URL, pushSubscription);
+
       const isHasBeenUnsubscribed = await pushSubscription.unsubscribe();
+      console.log('isHasBeenUnsubscribed: ', isHasBeenUnsubscribed);
       if (!isHasBeenUnsubscribed) {
-        console.log('Failed to unsubscribed push message');
+        console.log('Failed to unsubscribe push message');
         await this._sendPostToServer(CONFIG.PUSH_MSG_SUBSCRIBE_URL, pushSubscription);
         return;
       }
+
       console.log('Push message has been unsubscribed');
     } catch (err) {
-      console.error('Failed to erase push notification from server:', err.message);
+      console.error('Failed to erase push notification data from server:', err.message);
     }
+
     this._showSubscribeButton();
   },
 
@@ -100,12 +108,14 @@ const FooterToolsInitiator = {
     }
     return outputArray;
   },
+
   _generateSubscribeOptions() {
     return {
       userVisibleOnly: true,
       applicationServerKey: this._urlB64ToUint8Array(CONFIG.PUSH_MSG_VAPID_PUBLIC_KEY),
     };
   },
+
   async _sendPostToServer(url, data) {
     const response = await fetch(url, {
       method: 'POST',
@@ -117,6 +127,7 @@ const FooterToolsInitiator = {
 
     return response.json();
   },
+
   _isSubscribedToServerForHiddenSubscribeButton(state = false) {
     if (state) {
       this._subscribeButton.style.display = 'none';
@@ -126,10 +137,12 @@ const FooterToolsInitiator = {
       this._unsubscribeButton.style.display = 'none';
     }
   },
+
   async _isCurrentSubscriptionAvailable() {
     const checkSubscription = await this._registrationServiceWorker?.pushManager.getSubscription();
     return Boolean(checkSubscription);
   },
+
   async _isNotificationReady() {
     if (!NotificationHelper._checkAvailability()) {
       console.log('Notification not supported in this browser');
@@ -153,6 +166,7 @@ const FooterToolsInitiator = {
 
     return true;
   },
+
   async _showSubscribeButton() {
     this._isSubscribedToServerForHiddenSubscribeButton(
       await this._isCurrentSubscriptionAvailable(),
